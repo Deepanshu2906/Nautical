@@ -6,8 +6,11 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.10.0",
     "@sap-cloud-sdk/resilience": "^3.10.0",
-    "@sap/cds": "^7",
+    "@sap/cds": "^7.5.2",
+    "@sap/cds-dk": "^7.5.1",
+    "@sap/xssec": "^3.6.1",
     "express": "^4"
   },
   "devDependencies": {
@@ -67,6 +70,24 @@
           "credentials": {
             "destination": "Ingenx_Server",
             "path": "/sap/opu/odata/sap/ZBTP_NAUTICAL_MARIDISTANCE_CDS"
+          }
+        }
+      },
+      "NAUTINAUTICALCV_SRV": {
+        "kind": "odata-v2",
+        "model": "srv/external/NAUTINAUTICALCV_SRV",
+        "csrf":true,
+        "csrfInBatch":true,
+        "[production]": {
+          "credentials": {
+            "destination": "internalserver",
+            "path": "/sap/opu/odata/nauti/NAUTICALCV_SRV"
+          }
+        },
+        "[development]": {
+          "credentials": {
+            "destination": "sandbox",
+            "path": "/sap/opu/odata/nauti/NAUTICALCV_SRV"
           }
         }
       }

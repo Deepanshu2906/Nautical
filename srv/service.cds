@@ -15,6 +15,7 @@ using ZBTP_NAUTI_CREATEVOYAGE_CDS from './external/ZBTP_NAUTI_CREATEVOYAGE_CDS.c
 using ZBTP_NAUTI_MARINE_DM_CDS from './external/ZBTP_NAUTI_MARINE_DM_CDS.cds';
 using ZBTP_NAUTI_VOY_DOC_UPD_CDS from './external/ZBTP_NAUTI_VOY_DOC_UPD_CDS.cds';
 using ZBTP_NAUTICAL_MARIDISTANCE_CDS from './external/ZBTP_NAUTICAL_MARIDISTANCE_CDS.cds';
+using NAUTINAUTICALCV_SRV  from './external/NAUTINAUTICALCV_SRV.cds';
 
 
 service Nautical{
@@ -46,6 +47,10 @@ service Nautical{
     entity BID_SCORE as projection on compare_quotation.BID_SCORE;
     entity VEND_FBID as projection on compare_quotation.VEND_FBID; 
     entity ZPORT as projection on NAUTI_MAS.ZPORT; 
+
+   entity BidTypeSet as projection on NAUTINAUTICALCV_SRV.BidTypeSet;
+
+ 
     entity ZBTP_NAUTI_CreateVoyage as projection on ZBTP_NAUTI_CREATEVOYAGE_CDS.ZBTP_NAUTI_CreateVoyage
     {        key Vlegn, Portc, Portn, Pdist, Medst, Vspeed, Ppdays, Vsdays, Vetad, Vetat, Vetdd, Vetdt, Vwead, Pstat, Matnr, Maktx, Cargs, Cargu, Othco, Frcost, Totco     }    
 ;
@@ -56,7 +61,7 @@ service Nautical{
     {        key sl_no, key voyno, key filename, file_content     }    
 ;
 entity ZBTP_NAUTICAL_MariDistance as projection on ZBTP_NAUTICAL_MARIDISTANCE_CDS.ZBTP_NAUTICAL_MariDistance
-    {        key from_port, key to_port, key distance     }    
+    {         from_port,  to_port,  distance     }    
 ;
 
        
