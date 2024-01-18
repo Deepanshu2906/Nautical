@@ -70,11 +70,13 @@ sap.ui.define(
       },
       onCreateVoyage: function () {
              let headerData = {
+              "VOYNO":-1,
                "VOYNM":"",
-               "VOYCD":"",
+               "VOYTY":"",
                "BIDTYPE":"",
-               "CARCD":"",
-               "CURR":""
+               "CARTY":"",
+               "CURR":"",
+               "VSTAT":"created"
              };
              // validation for value help
              const _voyage_Name = this.byId("_voyage_Name").getValue();
@@ -83,10 +85,11 @@ sap.ui.define(
              const _cargo_type = this.byId("_cargo_type").getValue();
              const _currency_type = this.byId("_currency_type").getValue();
              headerData.VOYNM = _voyage_Name;
-             headerData.VOYCD = _voyage_type;
+             headerData.VOYTY = _voyage_type;
              headerData.BIDTYPE=_bidding_Type;
-             headerData.CARCD= _cargo_type;
-             headerData.CURR = _cargo_type;
+             headerData.CARTY= _cargo_type;
+             headerData.CURR = _currency_type;
+             
              // console.log("Selected values : ", _voyage_Name,_voyage_type, _cargo_type, _bidding_Type, _currency_type);
       
              if(_voyage_Name == "" ){
@@ -115,26 +118,97 @@ sap.ui.define(
       
       
              }
-             console.log(headerData);
-              let flag = false;
-
-              // Calling  Calculate logic fn
-
-              let result = this.calculateVoyage(flag);
-              console.log(result);
-      
+             let flag = false;
+             
+             // Calling  Calculate logic fn
+             
+             let result = this.calculateVoyage(flag);
+             console.log(result);
+             
              if( result  =="Complete Calculate logic first" ){
                MessageBox.error("please Calculate logic first")
-              
-             }else if( result =="proceed" ){
+               
+              }else if( result =="proceed" ){
+
+               console.log("header data : ",headerData);
+               this.onSaveVoyage(headerData);
+               
                console.log("ItemLevel Details : ", itemDetails);
-               const oRouter = this.getOwnerComponent().getRouter();
-               oRouter.navTo("RouteTrChangeVoyage", {
+
+              //  const oRouter = this.getOwnerComponent().getRouter();
+              //  oRouter.navTo("RouteTrChangeVoyage", {
                 
-                
-               });
+              //  });
+
              }
-             }, 
+      },
+      onSaveVoyage : function (payloadHeader){
+
+      let JsonData = JSON.stringify(payloadHeader)
+
+      let EndPoint = "/odata/v4/nautical/NAVOYGH";
+        fetch(EndPoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JsonData
+        })
+          .then(function (res) {
+ 
+            if (res.ok) {
+ 
+              console.log("Entity created successfully");
+              console.log(res);
+              res.json().then((data) => {
+                if (data ) {
+                  // Show the error message from the backend
+                 
+                  console.log(`successfully created ${data.VOYNO}`);
+                  MessageBox.success(`successfully created Voyage no. ${data.VOYNO}`);
+                  return
+                }
+              });
+              // MessageToast.show(`Entity created successfully`)
+ 
+ 
+            }
+            else {
+              res.json().then((data) => {
+                if (data && data.error && data.error.message) {
+                  // Show the error message from the backend
+                  MessageBox.error(data.error.message);
+                  return
+                }
+              });
+            }
+          })
+          .catch(function (err) {
+            console.log("error", err);
+          })
+          // .then(function (res) {
+          //   if (res.ok) {
+          //     return res.json();
+          //   } else {
+          //     throw new Error('Network response was not ok.');
+          //   }
+          // })
+          // .then(function (data) {
+          //   if (data.success) {
+          //     // Handle success
+          //     console.log(data.message);
+          //     MessageBox.success(data.message);
+          //   } else {
+          //     // Handle error
+          //     console.error('Error:', data.error);
+          //     MessageBox.error(data.error);
+          //   }
+          // })
+          // .catch(function (err) {
+          //   console.error('Fetch error:', err);
+          // });
+ 
+      }, 
       showValueHelpDialog1: function () {
         // Create a dialog
         console.log("clicked voyage");

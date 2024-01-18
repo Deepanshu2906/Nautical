@@ -40,13 +40,16 @@ entity NAVOYGH {
 
 }
 
-
+@assert.unique: {
+  cominedKey: [ VOYNO, VLEGN ],
+  
+}
 // Voyage Item level data 
 entity NAVOYGIP  {
 
-        key VOYNO : Association to NAVOYGH;   //>  NAVOYGH-VOYNM
+        VOYNO : Association to NAVOYGH;   //>  NAVOYGH-VOYNM
         VOYNM  : Association to NAVOYGH; // Voyage  Number  -
-        key   VLEGN  : Int64; // Numeric( 10)
+        VLEGN  : Int64; // Numeric( 10)
         PORTC  : String(10); // Internation Unified Port code - unique
         PORTN  : String(10); // commnon used port name
         LOCNAM : String(10); // ref for Oil TSW   --> OIJNOMI-LOCNAM
@@ -67,6 +70,7 @@ entity NAVOYGIP  {
         OTHCO  : Decimal; //  additional charge for voyage
         FRCOST : Decimal; // total freight cost
         TOTCO  : Decimal; // totDecimal
+        combinedKey : String;
         
 
 }

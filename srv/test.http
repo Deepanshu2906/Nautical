@@ -12,7 +12,7 @@ Content-Type: application/json
 
  {
     "VOYNO":-1,
-    "VOYNM": "btp",
+    "VOYNM": "deep",
     "VNOMTK": "",
     "REFDOC": "",
     "DOCIND": 1,

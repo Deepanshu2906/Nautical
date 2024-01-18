@@ -23,7 +23,7 @@ module.exports = cds.service.impl(async function (srv) {
             console.log("my data : ", req.data);
             let {maxID}  = await SELECT.one`max(VOYNO) as maxID`.from(NAVOYGH);
 
-            console.log("requested Params   :", req.params);
+            
             if(maxID==null){
                 maxID = 1000000;
                 
@@ -36,6 +36,8 @@ module.exports = cds.service.impl(async function (srv) {
             // console.log(id);
 
             const voydata = req.data
+            console.log("updated data: ", voydata);
+
             const result = await cds.tx(req).run(INSERT.into(NAVOYGH).entries(voydata))
             console.log(result.results);
             return {
