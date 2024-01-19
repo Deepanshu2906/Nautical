@@ -12,11 +12,60 @@ sap.ui.define(
     "use strict";
     let isLogicDone = false;
     let itemDetails = {};
+    let count =0;
+    var lastobj;
 
     return Controller.extend("nauticalfe.controller.CreateVoyage", {
       onInit: function () {
         var oView = this.getView();
+
+        
       },
+
+    showData:function(){
+      const url = "/odata/v4/nautical/NAVOYGH"; 
+
+ 
+
+      fetch(url) 
+
+          .then(response => { 
+
+              if (!response.ok) { 
+
+                  throw new Error('Network response was not ok'); 
+
+              } 
+
+              return response.json(); 
+
+          }) 
+
+          .then(odata => { 
+
+              console.log("show Entity Data",odata); 
+              // return odata;
+              let dataLength=odata.value;
+
+
+              lastobj=dataLength[dataLength.length-1]
+              console.log("last-Obj",lastobj.VOYNO);
+              
+             MessageBox.success(`Successfully created Voyage no. ${lastobj.VOYNO}`);
+
+   
+
+          }) 
+
+          .catch(error => { 
+
+              console.error('There was a problem with the fetch operation:', error); 
+
+          }); 
+
+
+    },
+
       onFreightSimulator: function () {
 
         var OriginData=this.getView().byId("portfromorigin").getValue();
@@ -70,7 +119,7 @@ sap.ui.define(
       },
       onCreateVoyage: function () {
              let headerData = {
-              "VOYNO":-1,
+              "VOYNO":-1 +count,
                "VOYNM":"",
                "VOYTY":"",
                "BIDTYPE":"",
@@ -145,7 +194,7 @@ sap.ui.define(
       onSaveVoyage : function (payloadHeader){
 
       let JsonData = JSON.stringify(payloadHeader)
-
+       let that = this;
       let EndPoint = "/odata/v4/nautical/NAVOYGH";
         fetch(EndPoint, {
           method: 'POST',
@@ -157,18 +206,28 @@ sap.ui.define(
           .then(function (res) {
  
             if (res.ok) {
- 
+              // console.log("fdgnm",res);
               console.log("Entity created successfully");
-              console.log(res);
-              res.json().then((data) => {
-                if (data ) {
-                  // Show the error message from the backend
-                 
-                  console.log(`successfully created ${data.VOYNO}`);
-                  MessageBox.success(`successfully created Voyage no. ${data.VOYNO}`);
-                  return
-                }
-              });
+               that.showData();
+              // MessageBox.success(`Successfully created Voyage no. ${lastobj.VOYNO}`);
+
+              //  console.log(result);
+              //  let resultLength=result.length
+              //  let valueofno = result[resultLength-1]
+              //  console.log(valueofno);
+              //  MessageBox.success(`successfully created Voyage no. ${data.VOYNO}`);
+              
+              // res.json().then((data) => {
+              //   if (data ) {
+              //     // Show the error message from the backend
+              //    console.log( data)
+              //   //  console.log(data.VOYNO)
+              //     // console.log(`successfully created ${data.VOYNO}`);
+              //     // MessageBox.success(`successfully created Voyage no. ${data.VOYNO}`);
+              //     count++;
+              //     return
+              //   }
+              // });
               // MessageToast.show(`Entity created successfully`)
  
  

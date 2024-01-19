@@ -1,5 +1,3 @@
-###
-GET http://localhost:4004/odata/v4/nautinauticalcv-srvsample/GtTabSet
 
 ###
 GET http://localhost:4004/odata/v4/nautical/NAVOYGH
@@ -11,8 +9,8 @@ POST  http://localhost:4004/odata/v4/nautical/NAVOYGH
 Content-Type: application/json
 
  {
-    "VOYNO":-1,
-    "VOYNM": "deep",
+    "VOYNO":1,
+    "VOYNM": "Mahadev",
     "VNOMTK": "",
     "REFDOC": "",
     "DOCIND": 1,
