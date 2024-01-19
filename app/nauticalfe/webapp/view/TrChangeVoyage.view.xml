@@ -68,7 +68,7 @@
                 <VBox id="_IDGenVBox1" alignItems="End">
                 <HBox id="_IDGenHBox2"  >
                 <Label id="Label1" text="Voyage No:"/>
-                <Input id="Input1" width="200px"/>
+                <Input id="Input1" width="200px" showValueHelp="true" valueHelpRequest=""/>
                 </HBox>
  
                 <HBox id="_IDGenHBox3" >
