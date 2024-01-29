@@ -11,69 +11,124 @@ using {
 namespace create_voyage;
 
 // Voyage header date  Table
-
 entity NAVOYGH {
-
-        VOYNO      : Integer64  ; // Voyage Number
-        VOYNM      : String(40); // Voyage Name
-        VNOMTK     : String(20); // Nomination Number
-        REFDOC     : String(10); //   Document Ref
-        DOCIND     : Int16; // Ref Doc. ind  --> /Ingenx/REF_DOC
-        VESSN      : String(20); // Vessel Name
-        VIMO       : String(20); // Vessel IMO Number --> TWS Vehicle Master
-        CHTYP      : String(5); // Charter Type
-        CHPNO      : String(10); // Freight Contract -> SAP Freight Contract
-        CURRKEYS   : String(5); // Currency Key
-        FRTCO      : Decimal; //   Freight Cost for the Voyage
-        VSTAT      : String(20); // Voyage Status
-        VOYTY      : String(4); // Voyage Type   -> VOYTYP
-        CARTY      : String(4); // Vessel Type -> CARTYP
-        CURR       : String(3); // Currency  --> NAVOYGUR
-        FREGHT     : Decimal; // 11   Historical Freight Cost
-        PARTY      : String(10); // CHarter Party Agreement
-        BIDTYPE    : String(2); // Bid type --> BIDTYPE
-        FRCOST     : Decimal; // Plan Freight cost
-        FRTU       : String(10); // Freight Unit
-        FRCOST_ACT : Decimal; // Actual Freight cost
-        ZDELETE    : String(1); //  Genral flag
-        REF_VOYNO  : String(20); //  REF VOYAGE No.
-
+        
+    key VOYNO        : Integer64;
+     
+        VOYNM        : String(40) not null;
+        VNOMTK       : String(20);
+        REFDOC       : String(10);
+        DOCIND       : Integer;
+        VESSN        : String(20);
+        VIMO         : String(20);
+        CHTYP        : String(5);
+        CHPNO        : String(10);
+        CURRKEYS     : String(5);
+        FRTCO        : Decimal;
+        VSTAT        : String(20);
+        VOYTY        : String(4) not null;
+        CARTY        : String(4) not null;
+        CURR         : String(3) not null;
+        FREGHT       : Decimal;
+        PARTY        : String(10);
+        BIDTYPE      : String(2) not null;
+        FRCOST       : String(17);
+        FRTU         : String(10);
+        FRCOST_ACT   : Decimal;
+        ZDELETE      : String(1);
+        REF_VOYNO    : String;
+        VoyageNumber : Composition of many NAVOYGIP
+                           on VoyageNumber.VOYNO = $self;
 }
 
-@assert.unique: {
-  cominedKey: [ VOYNO, VLEGN ],
-  
+/**
+ * Item Level Data
+ */
+entity NAVOYGIP {
+    key VOYNO  : Association to one NAVOYGH;
+    key VLEGN  : Integer;
+        
+        PORTC  : String(10);
+        PORTN  : String(10);
+        LOCNAM : String(10);
+        PDIST  : Decimal(10, 3);
+        VSPEED : Decimal;
+        PPDAYS : Decimal;
+        VSDAYS : Decimal;
+        VETAD  : Date;
+        VETAT  : Time;
+        VETDD  : Date;
+        VETDT  : Time;
+        VWEAD  : Decimal;
+        PSTAT  : String(20);
+        MATNR  : String(40);
+        MAKTX  : String(40);
+        CARGS  : Decimal(12, 0);
+        CARGU  : String(10);
+        OTHCO  : Decimal;
+        FRCOST : Decimal;
+        TOTCO  : Decimal;
 }
-// Voyage Item level data 
-entity NAVOYGIP  {
+// entity NAVOYGH {
 
-        VOYNO : Association to NAVOYGH;   //>  NAVOYGH-VOYNM
-        VOYNM  : Association to NAVOYGH; // Voyage  Number  -
-        VLEGN  : Int64; // Numeric( 10)
-        PORTC  : String(10); // Internation Unified Port code - unique
-        PORTN  : String(10); // commnon used port name
-        LOCNAM : String(10); // ref for Oil TSW   --> OIJNOMI-LOCNAM
-        PDIST  : Decimal; // distnce betwenn two port from API
-        VSPEED : Decimal; // (The speed of the vessel from Vessel Master/Manual Input)
-        PPDAYS : Decimal; // Port days (Proposed from Historic Data/or Manual Input)
-        VSDAYS : Decimal; // Sea Dys( Proposed from Historic Data/or Manual Input)
-        VETAD  : Date; // ETA
-        VETAT  : Time; // Time+A14:L25
-        VETDD  : Date; // Manual entry (ETD)
-        VETDT  : Time; //   Time ( manual)
-        VWEAD  : Decimal; // Weather Delay Sea
-        PSTAT  : String(5); // Status (In Planning, Vetting in Progress, Vetting Completed, Voyage Commenced)
-        MATNR  : String(40); // Material Number
-        MAKTX  : String(40); // Material Description
-        CARGS  : Decimal(12); // Cargo Size
-        CARGU  : String(10); // unit of measure ment
-        OTHCO  : Decimal; //  additional charge for voyage
-        FRCOST : Decimal; // total freight cost
-        TOTCO  : Decimal; // totDecimal
-        combinedKey : String;
+//         VOYNO      : Integer64  ; // Voyage Number
+//         VOYNM      : String(40); // Voyage Name
+//         VNOMTK     : String(20); // Nomination Number
+//         REFDOC     : String(10); //   Document Ref
+//         DOCIND     : Int16; // Ref Doc. ind  --> /Ingenx/REF_DOC
+//         VESSN      : String(20); // Vessel Name
+//         VIMO       : String(20); // Vessel IMO Number --> TWS Vehicle Master
+//         CHTYP      : String(5); // Charter Type
+//         CHPNO      : String(10); // Freight Contract -> SAP Freight Contract
+//         CURRKEYS   : String(5); // Currency Key
+//         FRTCO      : Decimal; //   Freight Cost for the Voyage
+//         VSTAT      : String(20); // Voyage Status
+//         VOYTY      : String(4); // Voyage Type   -> VOYTYP
+//         CARTY      : String(4); // Vessel Type -> CARTYP
+//         CURR       : String(3); // Currency  --> NAVOYGUR
+//         FREGHT     : Decimal; // 11   Historical Freight Cost
+//         PARTY      : String(10); // CHarter Party Agreement
+//         BIDTYPE    : String(2); // Bid type --> BIDTYPE
+//         FRCOST     : Decimal; // Plan Freight cost
+//         FRTU       : String(10); // Freight Unit
+//         FRCOST_ACT : Decimal; // Actual Freight cost
+//         ZDELETE    : String(1); //  Genral flag
+//         REF_VOYNO  : String(20); //  REF VOYAGE No.
+
+// }
+
+
+// // Voyage Item level data 
+// entity NAVOYGIP  {
+
+//         VOYNO : Association to NAVOYGH;   //>  NAVOYGH-VOYNM
+//         VOYNM  : Association to NAVOYGH; // Voyage  Number  -
+//         VLEGN  : Int64; // Numeric( 10)
+//         PORTC  : String(10); // Internation Unified Port code - unique
+//         PORTN  : String(10); // commnon used port name
+//         LOCNAM : String(10); // ref for Oil TSW   --> OIJNOMI-LOCNAM
+//         PDIST  : Decimal; // distnce betwenn two port from API
+//         VSPEED : Decimal; // (The speed of the vessel from Vessel Master/Manual Input)
+//         PPDAYS : Decimal; // Port days (Proposed from Historic Data/or Manual Input)
+//         VSDAYS : Decimal; // Sea Dys( Proposed from Historic Data/or Manual Input)
+//         VETAD  : Date; // ETA
+//         VETAT  : Time; // Time+A14:L25
+//         VETDD  : Date; // Manual entry (ETD)
+//         VETDT  : Time; //   Time ( manual)
+//         VWEAD  : Decimal; // Weather Delay Sea
+//         PSTAT  : String(5); // Status (In Planning, Vetting in Progress, Vetting Completed, Voyage Commenced)
+//         MATNR  : String(40); // Material Number
+//         MAKTX  : String(40); // Material Description
+//         CARGS  : Decimal(12); // Cargo Size
+//         CARGU  : String(10); // unit of measure ment
+//         OTHCO  : Decimal; //  additional charge for voyage
+//         FRCOST : Decimal; // total freight cost
+//         TOTCO  : Decimal; // totDecimal
+//         combinedKey : String;
         
 
-}
+// }
+
 //Bid details for voyage
 entity ITEM_BID  {
 

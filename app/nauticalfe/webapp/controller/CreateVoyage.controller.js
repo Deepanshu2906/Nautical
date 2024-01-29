@@ -17,15 +17,40 @@ sap.ui.define(
 
     return Controller.extend("nauticalfe.controller.CreateVoyage", {
       onInit: function () {
-        var oView = this.getView();
-
-        
-      },
-
+      console.log("on it  1");
+        let allPortData = {
+          VLEGN: 0,
+          PORTC: '',
+          PORTN: '',
+          LOCNAM: '',
+          PDIST: 0,
+          VSPEED: 0.0,
+          PPDAYS: 0.0,
+          VSDAYS: 0.0,
+          VETAD: null, 
+          VETAT: null, 
+          VETDD: null, 
+          VETDT: null, 
+          VWEAD: 0.0,
+          PSTAT: '',
+          MATNR: '',
+          MAKTX: '',
+          CARGS: 0,
+          CARGU: '',
+          OTHCO: 0.0,
+          FRCOST: 0.0,
+          TOTCO: 0.0,
+          VOYNO_VOYNO: 0
+        };
+        let jsonModel = new sap.ui.model.json.JSONModel(allPortData )
+      // console.log("on it  2");
+      this.getOwnerComponent().setModel(jsonModel,"portdata")
+      let x = this.getOwnerComponent().getModel("portdata").getData();
+      console.log(x);
+    },
     showData:function(){
       const url = "/odata/v4/nautical/NAVOYGH"; 
-
- 
+      let oRouter = this.getOwnerComponent().getRouter();
 
       fetch(url) 
 
@@ -51,11 +76,16 @@ sap.ui.define(
               lastobj=dataLength[dataLength.length-1]
               console.log("last-Obj",lastobj.VOYNO);
               
-             MessageBox.success(`Successfully created Voyage no. ${lastobj.VOYNO}`);
+             MessageBox.success(`Successfully created Voyage no. ${lastobj.VOYNO}`,);
+              
 
-   
+          }).then(x=>{
+            setTimeout(()=>{
 
-          }) 
+              console.log("navigated")
+              let router =  oRouter.navTo("RouteTrChangeVoyage");
+            }, 1500);
+          })
 
           .catch(error => { 
 
@@ -119,7 +149,7 @@ sap.ui.define(
       },
       onCreateVoyage: function () {
              let headerData = {
-              "VOYNO":-1 +count,
+              "VOYNO":-1 + count,
                "VOYNM":"",
                "VOYTY":"",
                "BIDTYPE":"",
@@ -180,9 +210,16 @@ sap.ui.define(
               }else if( result =="proceed" ){
 
                console.log("header data : ",headerData);
-               this.onSaveVoyage(headerData);
+               // fn  on press create
+
+               let oModelport = this.getOwnerComponent().getModel("portdata");
+               // creating entries in json model
+              //  oModelport.create()
+
+
+               this.onSaveVoyage(headerData, itemDetails);
                
-               console.log("ItemLevel Details : ", itemDetails);
+              //  console.log("ItemLevel Details : ", itemDetails);
 
               //  const oRouter = this.getOwnerComponent().getRouter();
               //  oRouter.navTo("RouteTrChangeVoyage", {
@@ -191,8 +228,8 @@ sap.ui.define(
 
              }
       },
-      onSaveVoyage : function (payloadHeader){
-
+      onSaveVoyage : function (payloadHeader, itemData){
+      console.log("ItemLevel Details ;",itemData);
       let JsonData = JSON.stringify(payloadHeader)
        let that = this;
       let EndPoint = "/odata/v4/nautical/NAVOYGH";
@@ -211,24 +248,7 @@ sap.ui.define(
                that.showData();
               // MessageBox.success(`Successfully created Voyage no. ${lastobj.VOYNO}`);
 
-              //  console.log(result);
-              //  let resultLength=result.length
-              //  let valueofno = result[resultLength-1]
-              //  console.log(valueofno);
-              //  MessageBox.success(`successfully created Voyage no. ${data.VOYNO}`);
               
-              // res.json().then((data) => {
-              //   if (data ) {
-              //     // Show the error message from the backend
-              //    console.log( data)
-              //   //  console.log(data.VOYNO)
-              //     // console.log(`successfully created ${data.VOYNO}`);
-              //     // MessageBox.success(`successfully created Voyage no. ${data.VOYNO}`);
-              //     count++;
-              //     return
-              //   }
-              // });
-              // MessageToast.show(`Entity created successfully`)
  
  
             }

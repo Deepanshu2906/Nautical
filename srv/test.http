@@ -1,89 +1,75 @@
 
-###
-GET http://localhost:4004/odata/v4/nautical/NAVOYGH
-###
-DELETE http://localhost:4004/odata/v4/nautical/NAVOYGH/1000000
 
-###
-POST  http://localhost:4004/odata/v4/nautical/NAVOYGH
+
+### DELETE for NAVOYGH
+
+DELETE http://localhost:4004/odata/v4/nautical/NAVOYGH/1000003
+### GET for NAVOYGH
+
+GET http://localhost:4004/odata/v4/nautical/NAVOYGH
+
+### post for NAVOYGH
+POST http://localhost:4004/odata/v4/nautical/NAVOYGH
 Content-Type: application/json
 
- {
-    "VOYNO":1,
-    "VOYNM": "Mahadev",
+{
+    "VOYNO": 1002,
+    "VOYNM": "BTP ",
     "VNOMTK": "",
     "REFDOC": "",
-    "DOCIND": 1,
+    "DOCIND": 0,
     "VESSN": "",
     "VIMO": "",
-    "CHTYP": "47678",
+    "CHTYP": "",
     "CHPNO": "",
-    "CURRKEYS": "USD",
-    "FRTCO": 30.56,
-    "VSTAT": "Created",
-    "VOYTY": "1000",
-    "CARTY": "1234",
-    "CURR": "USD",
-    "FREGHT": 0,
-    "PARTY": "not yet",
-    "BIDTYPE": "2",
-    "FRCOST": 0,
+    "CURRKEYS": "",
+    "FRTCO": 0.000,
+    "VSTAT": "",
+    "VOYTY": "",
+    "CARTY": "",
+    "CURR": "",
+    "FREGHT": 0.000,
+    "PARTY": "",
+    "BIDTYPE": "",
+    "FRCOST": "",
     "FRTU": "",
-    "FRCOST_ACT": 0,
-    "ZDELETE": "0",
-    "REF_VOYNO": "empty"
- }
-
-
-###
-GET http://localhost:4004/odata/v4/nautical/NAVOYGH
-
-{
-"VOYNO_VOYNO":1003,    
-"VOYNO_VOYNM": "hh",
-"VLEGN": "1234567890",
-"PORTC":"89jh",
-"PORTN": "Port City",
-"LOCNAM": "OilRef1",
-"PDIST": "1500.456",
-"VSPEED": "12",
-"PPDAYS": "3",
-"VSDAYS": "5",
-"VETAD": "2023-12-10",
-"VETAT": null,
-"VETDD": "2023-12-15",
-"VETDT": null,
-"VWEAD": "1",
-"PSTAT": "Plan",
-"MATNR": "M123456789",
-"MAKTX": "Material Description",
-"CARGS": "5678",
-"CARGU": "Tonnes",
-"OTHCO_code": null,
-"FRCOST_code": null,
-"TOTCO_code": null
+    "FRCOST_ACT": 0.000,
+    "ZDELETE": "",
+    "REF_VOYNO": ""
+    
 }
+### GET req for NAVOYGIP
 
+GET http://localhost:4004/odata/v4/nautical/NAVOYGIP
 
-###
-POST  http://localhost:4004/odata/v4/nautical/ZBTP_NAUTICAL_MariDistance
+### POST request for Item level Table
+
+POST http://localhost:4004/odata/v4/nautical/NAVOYGIP
 Content-Type: application/json
 
 {
-"from_port": "test",
-"to_port": "testing",
-"distance": "261"
+    "VOYNO":{"VOYNO": 1000003},
+    "VLEGN": 1,
+    "PORTC": "INBOM",
+    "PORTN": "INVIK",
+    "LOCNAM": "",
+    "PDIST": 0.000,
+    "VSPEED": 0.000,
+    "PPDAYS": 0.000,
+    "VSDAYS": 0.000,
+    "VETAD": "2024-01-22",
+    "VETAT": "20:23:22",
+    "VETDD": "2024-01-22",
+    "VETDT": "20:23:22",
+    "VWEAD": 0.000,
+    "PSTAT": "",
+    "MATNR": "",
+    "MAKTX": "",
+    "CARGS": 108,
+    "CARGU": "LUMSUM",
+    "OTHCO": 0.000,
+    "FRCOST": 0.000,
+    "TOTCO": 0.000
+    
 }
 
-###
-DELETE  http://localhost:4004/odata/v4/nautical/NAVOYGIP/
-
-###
-PATCH   http://localhost:4004/odata/v4/nautical/NAVOYGIP/VOY2
-Content-Type: application/json
-
-{
-
-"PORTN": "PCity"
-
-}
