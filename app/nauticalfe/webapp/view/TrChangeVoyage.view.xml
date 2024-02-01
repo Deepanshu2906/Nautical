@@ -63,20 +63,20 @@
 
         <Text id="_IDGenText11" class="vgheading" text="Voyage Details" />
         <!-- For Header Section -->
-            <HBox id="_IDGenHBox1" class="vdHeaderLayout" >
+            <HBox id="_IDGenHBox1" class="vdHeaderLayout"  >
  
                 <VBox id="_IDGenVBox1" alignItems="End">
                 <HBox id="_IDGenHBox2"  >
                 <Label id="Label1" text="Voyage No:"/>
-                <Input id="Input1" width="200px" showValueHelp="true" valueHelpRequest=""/>
+                <Input id="Input1" width="200px" showValueHelp="true" valueHelpRequest="" value="{VOYNO}"/>
                 </HBox>
  
                 <HBox id="_IDGenHBox3" >
                 <Label id="Label2" text="Voyage Name:"/>
-                <Input id="Input2" width="200px"/>
+                <Input id="Input2" width="200px" value="{VOYNM}"/>
                 </HBox>
                 </VBox>
-                <VBox id="_IDGenVBox2" alignItems="End" >
+                <!-- <VBox id="_IDGenVBox2" alignItems="End" >
                 <HBox id="_IDGenHBox4">
                 <Label id="Label3" text="Voyage Type:"/>
                 <Select
@@ -122,7 +122,7 @@
                 <Label id="Label8" text="Status:"/>
                 <Input id="Input6"/>
                 </HBox>
-                </VBox>
+                </VBox> -->
             </HBox>
 
 

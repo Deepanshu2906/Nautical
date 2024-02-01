@@ -3,7 +3,7 @@
 
 ### DELETE for NAVOYGH
 
-DELETE http://localhost:4004/odata/v4/nautical/NAVOYGH/1000003
+DELETE http://localhost:4004/odata/v4/nautical/NAVOYGH/1000004
 ### GET for NAVOYGH
 
 GET http://localhost:4004/odata/v4/nautical/NAVOYGH
@@ -13,7 +13,7 @@ POST http://localhost:4004/odata/v4/nautical/NAVOYGH
 Content-Type: application/json
 
 {
-    "VOYNO": 1002,
+    "VOYNO": 1001,
     "VOYNM": "BTP ",
     "VNOMTK": "",
     "REFDOC": "",
@@ -48,7 +48,7 @@ POST http://localhost:4004/odata/v4/nautical/NAVOYGIP
 Content-Type: application/json
 
 {
-    "VOYNO":{"VOYNO": 1000003},
+    "VOYNO_VOYNO":1000001,
     "VLEGN": 1,
     "PORTC": "INBOM",
     "PORTN": "INVIK",

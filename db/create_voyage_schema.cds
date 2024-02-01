@@ -55,10 +55,10 @@ entity NAVOYGIP {
         VSPEED : Decimal;
         PPDAYS : Decimal;
         VSDAYS : Decimal;
-        VETAD  : Date;
-        VETAT  : Time;
-        VETDD  : Date;
-        VETDT  : Time;
+        VETAD  : String;
+        VETAT  : String;
+        VETDD  : String;
+        VETDT  : String;
         VWEAD  : Decimal;
         PSTAT  : String(20);
         MATNR  : String(40);

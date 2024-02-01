@@ -157,7 +157,7 @@
           },
           {
               "name": "RouteTrChangeVoyage",
-              "pattern": "changeVoyage",
+              "pattern": "changeVoyage/{VOYAGE_NO}",
               "target": [
                   "TargetTrChangeVoyage"
               ]

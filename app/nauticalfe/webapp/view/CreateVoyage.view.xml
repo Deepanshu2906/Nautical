@@ -150,7 +150,7 @@ xmlns:form="sap.ui.layout.form"
               <Input id="arrivaldateorigin"     width="auto" value="" editable="false" />
               <Input id="arrivaltimeorigin" change="handleChange"    value="" editable="false" />
               <DatePicker id="departuredateorigin" placeholder="Enter Date" />
-              <TimePicker id="departuretimeorigin"  displayFormat="hh:mm:ss" showCurrentTimeButton="true"></TimePicker>
+              <TimePicker id="departuretimeorigin"  displayFormat="HH:mm:ss" showCurrentTimeButton="true"></TimePicker>
              
              </cells>
              
