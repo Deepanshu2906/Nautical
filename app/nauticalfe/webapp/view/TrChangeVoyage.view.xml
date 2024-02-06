@@ -76,9 +76,9 @@
                 <Input id="Input2" width="200px" value="{VOYNM}"/>
                 </HBox>
                 </VBox>
-                <!-- <VBox id="_IDGenVBox2" alignItems="End" >
+                <VBox id="_IDGenVBox2" alignItems="End" >
                 <HBox id="_IDGenHBox4">
-                <Label id="Label3" text="Voyage Type:"/>
+                <!-- <Label id="Label3" text="Voyage Type:"/>
                 <Select
                        id="Select2"
                         width ="200px"
@@ -86,11 +86,13 @@
                
                         items="{
                             path: '/VOYTYP'
-                        }">
+                        }"
+                        
+                        >
                     <core:Item  id="_Item2" key="{VOYCD}" text="{VOYDES}" />
-                </Select>
+                </Select> -->
                 </HBox>
-                <HBox id="_IDGenHBox5">
+                <!-- <HBox id="_IDGenHBox5">
                 <Label id="_Label4" text="Vessel Type:"/>
                 <Select id="Select3" width="200px" forceSelection="false"
            
@@ -99,30 +101,30 @@
                     }">
                     <core:Item  id="_Item3" key="{CARCD}" text="{CARDES}" />
                 </Select>
-                </HBox>
+                </HBox> -->
                 </VBox>
                 <VBox id="_IDGenVBox3" alignItems="End" >
                 <HBox id="_IDGenHBox6">
                 <Label id="Label5" text="Currency:"/>
-                <Input id="Input3" width="100px"/>
+                <Input id="Input3" width="100px" value="{CURR}"/>
                 </HBox>
  
                 <HBox id="_IDGenHBox7">
                 <Label id="Label6" text="Historical Frieght Cost Name:" />
-                <Input id="Input4" width="100px" />
+                <Input id="Input4" width="100px" value="{FRCOST}" />
                 </HBox>
                 </VBox>
                 <VBox id="_IDGenVBox4" alignItems="End">
                 <HBox id="_IDGenHBox8">
                 <Label id="Label7" text="Bid Type:"/>
-                <Input id="Input5" />
+                <Input id="Input5" value="{BIDTYPE}" />
                 </HBox>
  
                 <HBox id="_IDGenHBox9">
                 <Label id="Label8" text="Status:"/>
-                <Input id="Input6"/>
+                <Input id="Input6" value="{VSTAT}"/>
                 </HBox>
-                </VBox> -->
+                </VBox>
             </HBox>
 
 

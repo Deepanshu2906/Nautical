@@ -35,7 +35,7 @@
       },
       "ZBTP_NAUTI_CREATEVOYAGE_CDS": {
         "kind": "odata-v2",
-        "model": "srv/external/ZBTP_NAUTI_CREATEVOYAGE_CDS",
+         "model": "srv/external/ZBTP_NAUTI_CREATEVOYAGE_CDS",
         "[production]": {
           "credentials": {
             "destination": "Ingenx_Server",

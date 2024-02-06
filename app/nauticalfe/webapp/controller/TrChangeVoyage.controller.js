@@ -27,6 +27,10 @@ sap.ui.define(
         console.log(myVOYNO, parseInt(myVOYNO.VOYAGE_NO));
         var oInput1 = this.byId("Input1"); 
         var oInput2 = this.byId("Input2"); 
+        var oInput3 = this.byId("Input3"); 
+        var oInput4 = this.byId("Input4"); 
+        var oInput5 = this.byId("Input5"); 
+        var oInput6 = this.byId("Input6"); 
 
         // Update the bindings of the input controls
         oInput1.unbindElement(); // Unbind the existing binding
@@ -35,6 +39,18 @@ sap.ui.define(
         // Similarly, update bindings for other input controls if needed
         oInput2.unbindElement();
         oInput2.bindElement("/NAVOYGH/" +myVOYNO.VOYAGE_NO);
+
+        oInput3.unbindElement();
+        oInput3.bindElement("/NAVOYGH/" +myVOYNO.VOYAGE_NO);
+
+        oInput4.unbindElement();
+        oInput4.bindElement("/NAVOYGH/" +myVOYNO.VOYAGE_NO);
+
+        oInput5.unbindElement();
+        oInput5.bindElement("/NAVOYGH/" +myVOYNO.VOYAGE_NO);
+
+        oInput6.unbindElement();
+        oInput6.bindElement("/NAVOYGH/" +myVOYNO.VOYAGE_NO);
       },
       onBackPress: function () {
         const oRouter = this.getOwnerComponent().getRouter();

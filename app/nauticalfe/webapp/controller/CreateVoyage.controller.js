@@ -105,7 +105,9 @@ sap.ui.define(
                     oBindListSP.create(portData1);
                     // that.getModel().refresh();
                     
-                    MessageToast.show("Data created Successfully for port 1");
+                    // MessageToast.show("Data created Successfully for port 1");
+                  console.log("Data created Successfully for port 1");
+
    
                 
    
@@ -119,17 +121,18 @@ sap.ui.define(
            oBindListSP.attachEventOnce("dataReceived", function () {
              let existingEntries = oBindListSP.getContexts().map(function (context) {
             // console.log("context : ", context);
-              return context.getProperty("PORTC");
+              return [context.getProperty("VLEGN"),context.getProperty("VOYNO_VOYNO")];
            });
              console.log("existing Entries : *** ", existingEntries);
-             if (existingEntries.includes(existingEntries)) {
+             if (existingEntries.includes(portData1[0]) && existingEntries.includes(portData1[1])) {
                MessageToast.show("Duplicate Voyage Code is not allowed");
             }  else {
    
               try {
                   oBindListSP.create(portData2);
                   
-                  MessageToast.show("Data created Successfully for port 2");
+                  // MessageToast.show("Data created Successfully for port 2");
+                  console.log("Data created Successfully for port 2");
                   that.getModel().refresh();
  
               
